@@ -14,7 +14,138 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      contact_items: {
+        Row: {
+          created_at: string
+          hidden: boolean
+          id: string
+          kind: string
+          label: string
+          sort_order: number
+          value: string
+        }
+        Insert: {
+          created_at?: string
+          hidden?: boolean
+          id?: string
+          kind: string
+          label?: string
+          sort_order?: number
+          value: string
+        }
+        Update: {
+          created_at?: string
+          hidden?: boolean
+          id?: string
+          kind?: string
+          label?: string
+          sort_order?: number
+          value?: string
+        }
+        Relationships: []
+      }
+      profile: {
+        Row: {
+          address: string
+          admin_passcode_hash: string | null
+          bio: string
+          button_style: string
+          card_radius: string
+          certificates: Json
+          company: string
+          cover_photo: string | null
+          created_at: string
+          cv_password_enabled: boolean
+          cv_password_hash: string | null
+          cv_url: string | null
+          designation: string
+          full_name: string
+          id: number
+          map_url: string | null
+          portfolio_url: string | null
+          profile_photo: string | null
+          theme_accent: string
+          theme_primary: string
+          updated_at: string
+          visibility: Json
+        }
+        Insert: {
+          address?: string
+          admin_passcode_hash?: string | null
+          bio?: string
+          button_style?: string
+          card_radius?: string
+          certificates?: Json
+          company?: string
+          cover_photo?: string | null
+          created_at?: string
+          cv_password_enabled?: boolean
+          cv_password_hash?: string | null
+          cv_url?: string | null
+          designation?: string
+          full_name?: string
+          id?: number
+          map_url?: string | null
+          portfolio_url?: string | null
+          profile_photo?: string | null
+          theme_accent?: string
+          theme_primary?: string
+          updated_at?: string
+          visibility?: Json
+        }
+        Update: {
+          address?: string
+          admin_passcode_hash?: string | null
+          bio?: string
+          button_style?: string
+          card_radius?: string
+          certificates?: Json
+          company?: string
+          cover_photo?: string | null
+          created_at?: string
+          cv_password_enabled?: boolean
+          cv_password_hash?: string | null
+          cv_url?: string | null
+          designation?: string
+          full_name?: string
+          id?: number
+          map_url?: string | null
+          portfolio_url?: string | null
+          profile_photo?: string | null
+          theme_accent?: string
+          theme_primary?: string
+          updated_at?: string
+          visibility?: Json
+        }
+        Relationships: []
+      }
+      social_links: {
+        Row: {
+          created_at: string
+          hidden: boolean
+          id: string
+          platform: string
+          sort_order: number
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          hidden?: boolean
+          id?: string
+          platform: string
+          sort_order?: number
+          url: string
+        }
+        Update: {
+          created_at?: string
+          hidden?: boolean
+          id?: string
+          platform?: string
+          sort_order?: number
+          url?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
