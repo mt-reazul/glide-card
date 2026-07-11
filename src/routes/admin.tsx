@@ -13,7 +13,7 @@ import {
   authStatus, login, logout, getAdminData, saveProfile, changePasscode,
   upsertContact, deleteContact, upsertSocial, deleteSocial, backupData, restoreData,
 } from "@/lib/admin.functions";
-import type { AdminData, ContactItem, PublicProfile, SocialLink, Visibility } from "@/lib/types";
+import type { AdminData, ContactItem, SocialLink, Visibility } from "@/lib/types";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({ meta: [{ title: "Admin — Digital Card" }, { name: "robots", content: "noindex,nofollow" }] }),
