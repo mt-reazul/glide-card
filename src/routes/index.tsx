@@ -261,7 +261,7 @@ function ContactRow({ item, accent }: { item: ContactItem; accent: string }) {
   );
 }
 
-const SOCIAL_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+const SOCIAL_ICONS: Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
   facebook: Facebook, linkedin: Linkedin, instagram: Instagram, github: Github,
   telegram: Send, twitter: Twitter, x: Twitter, youtube: Youtube,
 };
