@@ -282,7 +282,7 @@ function SocialChip({ link, accent }: { link: SocialLink; accent: string }) {
 
 function DocButton({
   icon: Icon, label, onClick, accent, locked,
-}: { icon: React.ComponentType<{ className?: string }>; label: string; onClick: () => void; accent: string; locked?: boolean }) {
+}: { icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>; label: string; onClick: () => void; accent: string; locked?: boolean }) {
   return (
     <button
       onClick={onClick}
