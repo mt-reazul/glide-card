@@ -173,7 +173,7 @@ export const saveProfile = createServerFn({ method: "POST" })
     if (typeof cv_password === "string") {
       update.cv_password_hash = cv_password ? sha256(cv_password) : null;
     }
-    const { error } = await supabaseAdmin.from("profile").update(update).eq("id", 1);
+    const { error } = await supabaseAdmin.from("profile").update(update as never).eq("id", 1);
     if (error) return { ok: false as const, error: error.message };
     return { ok: true as const };
   });
@@ -255,7 +255,7 @@ export const restoreData = createServerFn({ method: "POST" })
     const { profile, contacts, socials } = data.payload;
     if (profile) {
       const { id: _id, created_at: _c, updated_at: _u, ...rest } = profile as Record<string, unknown>;
-      await supabaseAdmin.from("profile").update(rest).eq("id", 1);
+      await supabaseAdmin.from("profile").update(rest as never).eq("id", 1);
     }
     if (Array.isArray(contacts)) {
       await supabaseAdmin.from("contact_items").delete().neq("id", "00000000-0000-0000-0000-000000000000");
@@ -263,7 +263,7 @@ export const restoreData = createServerFn({ method: "POST" })
         const { id: _id, created_at: _c, ...rest } = r as Record<string, unknown>;
         return rest;
       });
-      if (rows.length) await supabaseAdmin.from("contact_items").insert(rows);
+      if (rows.length) await supabaseAdmin.from("contact_items").insert(rows as never);
     }
     if (Array.isArray(socials)) {
       await supabaseAdmin.from("social_links").delete().neq("id", "00000000-0000-0000-0000-000000000000");
@@ -271,7 +271,7 @@ export const restoreData = createServerFn({ method: "POST" })
         const { id: _id, created_at: _c, ...rest } = r as Record<string, unknown>;
         return rest;
       });
-      if (rows.length) await supabaseAdmin.from("social_links").insert(rows);
+      if (rows.length) await supabaseAdmin.from("social_links").insert(rows as never);
     }
     return { ok: true as const };
   });
