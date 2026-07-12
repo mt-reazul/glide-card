@@ -5,6 +5,9 @@ export type Visibility = {
   documents: boolean;
   bio: boolean;
   cover: boolean;
+  save: boolean;
+  qr: boolean;
+  share: boolean;
 };
 
 export type Certificate = { label: string; url: string };
