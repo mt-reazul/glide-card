@@ -56,8 +56,10 @@ function coerceProfile(row: Record<string, unknown>): PublicProfile {
     theme_accent: (row.theme_accent as string) ?? "#0ea5e9",
     button_style: (row.button_style as string) ?? "rounded",
     card_radius: (row.card_radius as string) ?? "2xl",
-    visibility: (row.visibility as Visibility) ?? {
+    visibility: {
       contact: true, social: true, address: true, documents: true, bio: true, cover: true,
+      save: true, qr: true, share: true,
+      ...((row.visibility as Partial<Visibility>) ?? {}),
     },
   };
 }
