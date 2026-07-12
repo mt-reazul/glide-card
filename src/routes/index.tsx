@@ -53,18 +53,21 @@ function PublicProfilePage() {
       <div className="mx-auto w-full max-w-lg px-4 pt-4">
         {/* Cover + avatar */}
         <div className="animate-float-in">
-          <div className="relative overflow-hidden rounded-[2rem] shadow-[var(--shadow-elevated)]">
-            {profile.visibility.cover && profile.cover_photo ? (
-              <img src={profile.cover_photo} alt="" className="h-44 w-full object-cover sm:h-56" />
-            ) : (
-              <div
-                className="h-44 w-full sm:h-56"
-                style={{ background: `linear-gradient(135deg, ${profile.theme_primary}, ${profile.theme_accent})` }}
-              />
-            )}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-          </div>
-          <div className="-mt-14 flex justify-center">
+          {profile.visibility.cover && (
+            <div className="relative overflow-hidden rounded-[2rem] shadow-[var(--shadow-elevated)]">
+              {profile.cover_photo ? (
+                <img src={profile.cover_photo} alt="" className="h-44 w-full object-cover sm:h-56" />
+              ) : (
+                <div
+                  className="h-44 w-full sm:h-56"
+                  style={{ background: `linear-gradient(135deg, ${profile.theme_primary}, ${profile.theme_accent})` }}
+                />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            </div>
+          )}
+          <div className={profile.visibility.cover ? "-mt-14 flex justify-center" : "flex justify-center pt-6"}>
+
             <div className="rounded-full p-1.5 glass shadow-[var(--shadow-elevated)]">
               {profile.profile_photo ? (
                 <img src={profile.profile_photo} alt={profile.full_name} className="h-28 w-28 rounded-full object-cover" />
