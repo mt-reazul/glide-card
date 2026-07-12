@@ -95,30 +95,38 @@ function PublicProfilePage() {
         </div>
 
         {/* Primary actions */}
-        <div className="mt-6 grid grid-cols-3 gap-2 animate-fade-up">
-          <button
-            onClick={() => { downloadVcf(data); toast.success("Contact saved"); }}
-            className="flex flex-col items-center gap-1 rounded-2xl p-3 text-white shadow-[var(--shadow-elevated)] transition-transform hover:-translate-y-0.5 active:scale-95"
-            style={{ background: `linear-gradient(135deg, ${profile.theme_primary}, ${profile.theme_accent})` }}
-          >
-            <Download className="h-5 w-5" />
-            <span className="text-xs font-semibold">Save</span>
-          </button>
-          <button
-            onClick={() => setShowQR(true)}
-            className="flex flex-col items-center gap-1 rounded-2xl bg-white p-3 shadow-[var(--shadow-soft)] transition-transform hover:-translate-y-0.5 active:scale-95"
-          >
-            <QrCode className="h-5 w-5" style={{ color: profile.theme_primary }} />
-            <span className="text-xs font-semibold">QR</span>
-          </button>
-          <button
-            onClick={() => shareProfile(profile.full_name)}
-            className="flex flex-col items-center gap-1 rounded-2xl bg-white p-3 shadow-[var(--shadow-soft)] transition-transform hover:-translate-y-0.5 active:scale-95"
-          >
-            <Share2 className="h-5 w-5" style={{ color: profile.theme_primary }} />
-            <span className="text-xs font-semibold">Share</span>
-          </button>
-        </div>
+        {(profile.visibility.save || profile.visibility.qr || profile.visibility.share) && (
+          <div className={`mt-6 grid gap-2 animate-fade-up`} style={{ gridTemplateColumns: `repeat(${[profile.visibility.save, profile.visibility.qr, profile.visibility.share].filter(Boolean).length}, minmax(0, 1fr))` }}>
+            {profile.visibility.save && (
+              <button
+                onClick={() => { downloadVcf(data); toast.success("Contact saved"); }}
+                className="flex flex-col items-center gap-1 rounded-2xl p-3 text-white shadow-[var(--shadow-elevated)] transition-transform hover:-translate-y-0.5 active:scale-95"
+                style={{ background: `linear-gradient(135deg, ${profile.theme_primary}, ${profile.theme_accent})` }}
+              >
+                <Download className="h-5 w-5" />
+                <span className="text-xs font-semibold">Save</span>
+              </button>
+            )}
+            {profile.visibility.qr && (
+              <button
+                onClick={() => setShowQR(true)}
+                className="flex flex-col items-center gap-1 rounded-2xl bg-white p-3 shadow-[var(--shadow-soft)] transition-transform hover:-translate-y-0.5 active:scale-95"
+              >
+                <QrCode className="h-5 w-5" style={{ color: profile.theme_primary }} />
+                <span className="text-xs font-semibold">QR</span>
+              </button>
+            )}
+            {profile.visibility.share && (
+              <button
+                onClick={() => shareProfile(profile.full_name)}
+                className="flex flex-col items-center gap-1 rounded-2xl bg-white p-3 shadow-[var(--shadow-soft)] transition-transform hover:-translate-y-0.5 active:scale-95"
+              >
+                <Share2 className="h-5 w-5" style={{ color: profile.theme_primary }} />
+                <span className="text-xs font-semibold">Share</span>
+              </button>
+            )}
+          </div>
+        )}
 
         {/* Contact */}
         {profile.visibility.contact && contacts.length > 0 && (
